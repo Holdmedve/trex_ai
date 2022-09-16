@@ -1,5 +1,8 @@
 build:
-	docker compose build firefox
+	docker compose build browser
 
-run:
-	docker compose run firefox
+browser:
+	docker compose run browser 
+
+xeyes:
+	docker compose run xeyes
