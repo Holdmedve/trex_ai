@@ -1,10 +1,8 @@
-import webbrowser
+from selenium import webdriver
 from time import sleep
 
-dino_url='chrome://dino'
+driver = webdriver.Firefox()
+driver.get('https://dinorunner.com')
 
-
-webbrowser.get('google-chrome').open_new_tab('https://www.python.org')
-# webbrowser.get('/usr/bin/google-chrome %s').open_new_tab('https://www.python.org')
 print('hello trex')
 sleep(1)

@@ -1,9 +1,15 @@
 FROM python:3.10-slim
+ENV GECKODRIVER_VER v0.30.0
+
+RUN pip install selenium
 
 RUN apt-get update
 
-RUN apt-get install -y wget
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
+RUN apt install -y curl
+RUN set -x \
+    && curl -sSLO https://github.com/mozilla/geckodriver/releases/download/${GECKODRIVER_VER}/geckodriver-${GECKODRIVER_VER}-linux64.tar.gz \
+    && tar zxf geckodriver-*.tar.gz \
+    && mv geckodriver /usr/bin/
 
-RUN apt-get install -y x11-apps
+RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list
+RUN apt-get install -y --no-install-recommends firefox
