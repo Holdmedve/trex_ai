@@ -1,15 +1,12 @@
-FROM python:3.10-slim
-ENV GECKODRIVER_VER v0.30.0
-
-RUN pip install selenium
+FROM ubuntu:bionic-20220902
 
 RUN apt-get update
+RUN apt-get install -y firefox
 
-RUN apt install -y curl
-RUN set -x \
-    && curl -sSLO https://github.com/mozilla/geckodriver/releases/download/${GECKODRIVER_VER}/geckodriver-${GECKODRIVER_VER}-linux64.tar.gz \
-    && tar zxf geckodriver-*.tar.gz \
-    && mv geckodriver /usr/bin/
+RUN apt-get install python3.10 -y
+RUN apt install python3-pip -y
 
-RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list
-RUN apt-get install -y --no-install-recommends firefox
+RUN pip3 install selenium
+
+RUN apt install curl -y
+RUN curl -L https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz | tar xz -C /usr/local/bin
