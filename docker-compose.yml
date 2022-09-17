@@ -8,3 +8,11 @@ services:
       - DISPLAY=192.168.1.225:0.0
     volumes:
       - ./main.py:/home/app/main.py
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1000M
+        reservations:
+          cpus: '0.25'
+          memory: 500M
