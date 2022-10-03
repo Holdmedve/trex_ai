@@ -2,27 +2,32 @@ from selenium import webdriver
 from time import sleep
 from pynput.keyboard import Key, Controller
 
-driver = webdriver.Firefox()
-driver.get('https://dinorunner.com')
+def load_game():
+    print('opening browser...')
+    driver = webdriver.Firefox()
+    sleep(3)
+    
+    print('loading page...')
+    driver.get('https://dinorunner.com')
+    print('page load finished')
 
-assert driver.title == "Dinosaur T-Rex Game - Chrome Dino Runner Online"
+    assert driver.title == "Dinosaur T-Rex Game - Chrome Dino Runner Online"
 
-print('hello trex')
-sleep(1)
 
-keyboard = Controller()
+def jump(controller):
+    controller.press(Key.space)
+    controller.release(Key.space)
 
-# Press and release space
-keyboard.press(Key.space)
-keyboard.release(Key.space)
-sleep(1)
-# Press and release space
-keyboard.press(Key.space)
-keyboard.release(Key.space)
-sleep(1)
-# Press and release space
-keyboard.press(Key.space)
-keyboard.release(Key.space)
 
-sleep(1)
+if __name__ == '__main__':
+    load_game()
+    controller = Controller()
+
+    jump(controller=controller)
+    sleep(1)
+    jump(controller=controller)
+    sleep(1)
+    jump(controller=controller)
+
+    sleep(1)
 
