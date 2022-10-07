@@ -1,7 +1,5 @@
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
-from time import sleep
-from pynput.keyboard import Key, Controller
 
 def load_game():
     print('opening browser...')
@@ -26,23 +24,9 @@ def load_game():
                 raise e    
 
     assert driver.title == "Dinosaur T-Rex Game - Chrome Dino Runner Online"
+    return driver
 
-
-def jump(controller):
-    print('jump!')
-    controller.press(Key.space)
-    controller.release(Key.space)
-
-
-if __name__ == '__main__':
-    load_game()
-    controller = Controller()
-
-    jump(controller=controller)
-    sleep(1)
-    jump(controller=controller)
-    sleep(1)
-    jump(controller=controller)
-
-    sleep(1)
-
+def close_game(webdriver):
+    print('closing game...')
+    webdriver.quit()
+    print('game closed')
