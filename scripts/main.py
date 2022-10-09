@@ -4,7 +4,7 @@ from pynput.keyboard import Controller
 
 from game import close_game, load_game
 from random_agent import act_randomly
-from controls import Actions, crouch, do_nothing, jump, jump_to_start
+from controls import Actions, crouch, jump_to_start, keep_view_on_top
 
 
 def main():
@@ -12,6 +12,7 @@ def main():
     sleep(1)
 
     controller = Controller()
+    keep_view_on_top(controller=controller)
     jump_to_start(controller=controller)    
 
     prev_action, cur_action = Actions.DO_NOTHING, Actions.DO_NOTHING

@@ -37,3 +37,6 @@ def jump_to_start(controller):
     print('jump to start')
     controller.press(Key.up)
     controller.release(Key.up)
+
+def keep_view_on_top(controller):
+    controller.press(Key.page_up)

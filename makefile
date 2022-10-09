@@ -1,7 +1,7 @@
 build:
 	docker compose build browser
 
-browser:
+game:
 	docker compose run browser  
 
 docker-stats:
