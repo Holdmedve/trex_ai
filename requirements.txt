@@ -1,0 +1,5 @@
+selenium
+pytest
+pynput
+Pillow
+opencv-python
