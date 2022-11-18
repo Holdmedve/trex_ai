@@ -2,6 +2,7 @@ from random import random
 
 from controls import crouch, do_nothing, jump
 
+
 def act_randomly(prev_action, controller):
     rand_float = random()
     if rand_float > 0.9999999:
