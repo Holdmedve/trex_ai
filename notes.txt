@@ -1,5 +1,0 @@
-trex ai notes:
-- inputs:
-	- visuals
-	- time elapsed, since it gets faster
-- having multiple architectures, allow breeding inside species()
