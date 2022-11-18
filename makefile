@@ -1,8 +1,6 @@
-build:
-	docker compose build browser
+run:
+	python scripts/main.py
 
-game:
-	docker compose run browser  
-
-docker-stats:
-	docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}\t{{.BlockIO}}"
+format:
+	python -m black ./scripts/*
+	autoflake --in-place --remove-unused-variables --recursive ./scripts

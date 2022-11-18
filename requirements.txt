@@ -1,5 +1,7 @@
-selenium
-pytest
-pynput
-Pillow
-opencv-python
+pytest==7.2.0
+pynput==1.7.6
+Pillow==9.3.0
+opencv-python==4.6.0.66
+selenium==4.6.0
+black==22.10.0
+autoflake==1.7.7
