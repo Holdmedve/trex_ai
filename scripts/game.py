@@ -1,32 +1,30 @@
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
+from contextlib import contextmanager
 
-def load_game():
-    print('opening browser...')
-    driver = webdriver.Firefox()
-    print('browser opened')
+
+@contextmanager
+def game_context():
+    print("opening browser...")
+    driver = webdriver.Chrome()
+    print("browser opened")
     driver.set_page_load_timeout(10)
 
-    retry_cnt = 0
-    while True:
-        try:
-            print('loading page...')
-            driver.get('https://dinorunner.com')
-            print('page load finished')
-            break
-        except TimeoutException as e:
-            # driver.delete_all_cookies()
-            if retry_cnt < 3:
-                print('page did not load, retrying...')
-                retry_cnt += 1
-            else:
-                print('page did not load, retries threshold exceeded')
-                raise e    
+    _load_page(driver=driver, url=_get_game_url())
 
-    assert driver.title == "Dinosaur T-Rex Game - Chrome Dino Runner Online"
-    return driver
+    yield
+
+    close_game(webdriver=driver)
+
+
+def _get_game_url():
+    return "https://dinorunner.com"
+
+
+def _load_page(driver, url):
+    driver.get(url)
+
 
 def close_game(webdriver):
-    print('closing game...')
+    print("closing game...")
     webdriver.quit()
-    print('game closed')
+    print("game closed")
